@@ -1,0 +1,219 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Pgold</groupId>
+  <artifactId>Pgold_Spoolman</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ 
+ 
+<properties>
+  <aspectj.version>1.9.6</aspectj.version>
+  <allure.version>2.13.9</allure.version>
+</properties>
+	
+	
+	<dependencies>
+	
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.16.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.8.0</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.2.3</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.5</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
+<dependency>
+    <groupId>net.sourceforge.tess4j</groupId>
+    <artifactId>tess4j</artifactId>
+    <version>5.9.0</version>
+</dependency>
+
+<!--#pm tesseract dependancies -->
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+  	<version>3.0.0-alpha1</version>
+</dependency>
+
+<!--#pm tesseract dependacies-->
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>3.0.0-alpha1</version>
+</dependency>
+	  	  
+<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.5.3</version>
+</dependency>
+
+  	<dependency>
+  		<groupId>PGold</groupId>
+  		<artifactId>PGold_Automation</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	
+  	
+  	<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+</dependency>
+
+  	
+  	
+  	<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+<dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-testng</artifactId>
+    <!--REMOVED VERSION DECLARATION IT WAS CAUSING DUPLICATION-->
+    <!--        <version>2.27.0</version>     -->
+    
+    </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.22.1</version>
+    <scope>runtime</scope>
+</dependency>
+
+<!--Add Dependency in the New Project: In the new Maven project where you want to use the test classes, add a dependency
+ to the test JAR created in the original project. Modify the pom.xml of the new project as follows:
+ "DEPENDANCY FOR PGOLD TEST METHODS"-->
+ <dependency>
+        <groupId>PGold</groupId>
+        <artifactId>PGold_Automation</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <classifier>tests</classifier>
+        <type>test-jar</type>
+        <scope>test</scope>
+    </dependency>
+
+
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>3.19.0</version>
+            <configuration>
+                <reportVersion>2.14.0</reportVersion>              
+                <results>
+                    <result>C:\Users\user\eclipse-workspace\Pgold_Spoolman\target\allure-results</result>
+                </results>       
+            </configuration>                   
+        </plugin>
+        
+        
+        <!-- Add the following options to your maven-surefire-plugin -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.1.2</version>
+    
+    <configuration>
+        <argLine>
+            -javaagent:"C:\Users\user\.m2\repository\org\aspectj\aspectjweaver\1.9.22.1\aspectjweaver-1.9.22.1.jar"
+        </argLine>
+    </configuration>
+    
+</plugin>
+
+
+	<!--ADD THIS PLUGIN TO YOUR POM TO FOR ENVIRONMENT EDIT-->
+	<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-resources-plugin</artifactId>
+		  <version>3.2.0</version>
+		  <executions>
+				    <execution>
+				      <id>copy-resources</id>
+				      <phase>test</phase>
+				      <goals>
+				        <goal>copy-resources</goal>
+				      </goals>
+				      <configuration>
+				        <outputDirectory>C:\Users\user\eclipse-workspace\Pgold_Spoolman\target\allure-results</outputDirectory>
+				        <resources>
+				          <resource>
+				            <directory>src/test/resources</directory>
+				            <includes>
+				            <include>environment.properties</include>
+				            </includes>
+				          </resource>
+				        </resources>
+				      </configuration>
+				    </execution>
+		  </executions>
+	</plugin>
+
+
+        
+    </plugins>
+</build>
+ 
+ 
+ <!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-bom</artifactId>
+            <version>2.27.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+
+
+  
+</project>
